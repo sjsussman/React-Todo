@@ -6,7 +6,7 @@ import TodoForm from './components/TodoForm'
 
 
 const listItems = [{
-  name: 'Test Item',
+  name: '',
   id: 1,
   completed: false,
 }]
@@ -30,6 +30,13 @@ class App extends React.Component {
     };
     this.setState({
       listItems: [...this.state.listItems, newItem]
+    })
+  }
+
+  clearAll = (e) => {
+    e.preventDefault();
+    this.setState({
+      listItems: []
     })
   }
 
@@ -59,11 +66,16 @@ class App extends React.Component {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoForm addItem={this.addItem}/>
+        <TodoForm 
+        addItem={this.addItem}
+        clearAll={this.clearAll}
+        />
+        
         <TodoList 
         listItems={this.state.listItems} 
         toggleCompleted={this.toggleComplete}
         clearCompleted={this.clearCompleted}
+        
         />
       </div>
     );

@@ -24,18 +24,26 @@ class TodoForm extends React.Component{
         this.props.addItem(e, this.state.item)
     };
 
+    clearItems = e => {
+        e.preventDefault();
+        this.setState({ item: '' });
+        this.props.clearAll(e)
+    };
+
     render() {
         return(
+            <div>
             <form onSubmit={this.submitItem}>
                 <input 
                 name='item'
                 value={this.state.item}
                 type='text'
                 onChange = {this.onChange}
-                />
-                <button>Add Item</button>
-                <button>Clear Items</button>
+                /> <br />
+                <button>Add Item</button> <br />
             </form>
+            <button onClick={this.clearItems}>Start New List</button> <br />
+            </div>
         )
     }
 }
